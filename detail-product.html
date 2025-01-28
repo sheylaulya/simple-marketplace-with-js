@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="detail-products.css"> <!-- Include your styles here -->
+
+    <!-- Font Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav>
+        <div id="navbar" class="navbar-scrolled">
+
+            <a href="index.html">
+                <img src="assets/image/logo.png" alt="">
+            </a>
+
+            <div>
+                <div class="search-container">
+                    <form action="">
+                        <input type="text" placeholder="Search.." name="search">
+                        <button type="" class="button-search"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                height="20" viewBox="0 0 20 20">
+                                <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                    <path
+                                        d="M10.5 5.5a5 5 0 1 0 0 10a5 5 0 0 0 0-10m-6.5 5a6.5 6.5 0 1 1 13 0a6.5 6.5 0 0 1-13 0" />
+                                    <path
+                                        d="M14.47 14.47a.75.75 0 0 1 1.06 0l4 4a.75.75 0 1 1-1.06 1.06l-4-4a.75.75 0 0 1 0-1.06" />
+                                </g>
+                            </svg></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="contents">
+
+        <div class="back-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path fill="currentColor" d="m5.83 9l5.58-5.58L10 2l-8 8l8 8l1.41-1.41L5.83 11H18V9z" /></svg>
+            <a href="index.html">Back to Products</a>
+        </div>
+        <div id="product-detail">
+            <img id="product-image" src="" alt="Product Image">
+            <div class="product-details">
+                <p id="product-category"></p>
+                <div class="product-specs">
+                    <h1 id="product-name"></h1>
+                    <p id="product-price"></p>
+                    <p id="product-description"></p>
+                    <p id="product-stocks"></p>
+                </div>
+
+                <button class="btn-product">
+                    <a id="check-outlinks" href="">
+
+                        Check Out
+                    </a>
+                </button>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        // Get the product ID from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+
+        console.log(productId)
+
+        const exchangeRate = 15700;
+
+        const products = [{
+                id: 1,
+                name: "Falcon PU Surf Board",
+                price: exchangeRate * 367.50,
+                category: "board-sports",
+                image: "assets/image/surf-board.jpg",
+                
+                desc: "Experience the thrill of the waves with this premium surfboard, designed for both beginners and experienced surfers. Crafted with durable materials, it offers excellent buoyancy and stability, allowing you to ride the waves with confidence. Whether you're at the beach or exploring the ocean, this surfboard ensures an unmatched surfing experience."
+            },
+            {
+                id: 2,
+                name: "Skateboard",
+                price: exchangeRate * 99.99,
+                category: "board-sports",
+                
+
+                image: "assets/image/skateboard.jpg",
+                desc: "Perfect for street skating and park tricks, this skateboard features a durable deck and smooth wheels for an effortless ride. Whether you're a beginner or a seasoned skater, its reliable build and stylish design make it an ideal choice for anyone looking to perform flips, grinds, or cruise through town in style."
+            },
+            {
+                id: 3,
+                name: "Basketball",
+                price: exchangeRate * 75.50,
+                category: "basketball",
+                
+
+                image: "assets/image/basketball.jpg",
+                desc: "Made for serious players, this professional-grade basketball offers exceptional grip and bounce for indoor and outdoor courts. Designed to meet official size and weight standards, it ensures optimal performance for every dribble, pass, and shot. Perfect your game with this reliable and durable basketball."
+            },
+            {
+                id: 4,
+                name: "Basketball Shoes",
+                price: exchangeRate * 120.00,
+                category: "basketball",
+                
+
+                image: "assets/image/basketball-shoes.jpg",
+                desc: "Enhance your performance on the court with these top-quality basketball shoes. Designed for comfort and support, they feature advanced cushioning technology to reduce impact during intense gameplay. Their high-top design provides ankle stability, helping you stay agile and quick during every match."
+            },
+            {
+                id: 5,
+                name: "Soccer Ball",
+                price: exchangeRate * 45.99,
+                category: "football",
+                
+
+                image: "assets/image/soccer-ball.jpg",
+                desc: "Engineered for precision and durability, this soccer ball is ideal for both practice and competitive play. Its advanced construction ensures consistent flight and excellent control, making it a perfect choice for players of all skill levels. Play your best game with this high-performance soccer ball."
+            },
+            {
+                id: 6,
+                name: "Football Helmet",
+                price: exchangeRate * 150.00,
+                category: "football",
+                
+
+                image: "assets/image/football-helmet.jpg",
+                desc: "Safety meets style in this professional-grade football helmet. Designed with impact-resistant materials and advanced padding, it offers maximum protection and comfort. Its adjustable fit and sleek design make it the perfect gear for any football enthusiast looking to stay safe on the field."
+            },
+            {
+                id: 7,
+                name: "Football Shoes",
+                price: exchangeRate * 89.99,
+                category: "football",
+                
+
+                image: "assets/image/football-shoes.jpg",
+                desc: "Step onto the field with confidence in these high-quality football shoes. Featuring excellent traction and durability, they provide superior grip on various surfaces. With their ergonomic design and comfortable fit, these shoes are ideal for players who demand the best performance in every game."
+            },
+            {
+                id: 8,
+                name: "Golf Club",
+                price: exchangeRate * 150.00,
+                category: "golf",
+                
+
+                image: "assets/image/golf-club.jpg",
+                desc: "Achieve precision and power in your swing with this premium golf club. Crafted from high-quality materials, it delivers exceptional balance and control, helping you improve your game on the course. Perfect for both beginners and experienced golfers, this club is a must-have for every golf enthusiast."
+            },
+            {
+                id: 9,
+                name: "Golf Balls",
+                price: exchangeRate * 30.00,
+                category: "golf",
+                
+
+                image: "assets/image/golf-balls.jpg",
+                desc: "Optimize your golf performance with these high-quality golf balls. Engineered for maximum distance and accuracy, they feature a durable outer layer for long-lasting use. Ideal for practice and tournaments, these balls are designed to elevate your game to the next level."
+            },
+            {
+                id: 10,
+                name: "Dumbbells",
+                price: exchangeRate * 35.50,
+                category: "gyms",
+                
+
+                image: "assets/image/dumbbells.jpg",
+                desc: "Build strength and tone your muscles with these versatile dumbbells. Perfect for home workouts or gym routines, they feature a comfortable grip and durable construction. Suitable for a variety of exercises, from curls to presses, these dumbbells are an essential addition to your fitness equipment."
+            },
+            {
+                id: 11,
+                name: "Yoga Mat",
+                price: exchangeRate * 25.00,
+                category: "gyms",
+                
+
+                image: "assets/image/yoga-mat.jpg",
+                desc: "Find your inner peace and improve your flexibility with this premium yoga mat. Made with non-slip material, it provides a stable surface for all types of yoga poses. Lightweight and easy to carry, it’s perfect for both studio sessions and at-home practice."
+            },
+            {
+                id: 12,
+                name: "Resistance Bands",
+                price: exchangeRate * 15.00,
+                category: "gyms",
+                
+
+                image: "assets/image/resistance-bands.jpg",
+                desc: "Enhance your strength training with these durable resistance bands. Designed for versatility, they are perfect for full-body workouts, stretching, and rehabilitation exercises. Compact and lightweight, these bands are an excellent addition to your fitness routine at home or on the go."
+            },
+            {
+                id: 13,
+                name: "Sports Water Bottle",
+                price: exchangeRate * 15.99,
+                category: "others",
+                
+
+                image: "assets/image/sports-water-bottle.jpg",
+                desc: "Stay hydrated during your workouts with this durable sports water bottle. Featuring a leak-proof design and a convenient grip, it’s perfect for gym sessions, outdoor activities, or daily use. Its lightweight construction and stylish design make it an essential companion for your active lifestyle."
+            },
+            {
+                id: 14,
+                name: "Sports Watch",
+                price: exchangeRate * 120.00,
+                category: "others",
+                
+
+                image: "assets/image/sports-watch.jpg",
+                desc: "Track your performance and stay on top of your fitness goals with this advanced sports watch. Equipped with features like heart rate monitoring, GPS tracking, and activity stats, it’s the ultimate accessory for athletes and fitness enthusiasts. Stylish and functional, it keeps you connected while you stay active."
+            }
+        ];
+
+
+        
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+
+            const x = document.getElementById("check-outlinks");
+            x.setAttribute('href', `checkout-page.html?id=${product.id}`);
+
+            
+            document.getElementById('product-category').textContent = product.category;
+            document.getElementById('product-name').textContent = product.name;
+            
+
+            document.getElementById('product-image').src = product.image;
+            document.getElementById('product-price').textContent = `Rp. ${product.price.toLocaleString('id-ID')}`;
+
+            document.getElementById('product-description').textContent = product.desc;
+        } else {
+            
+            document.getElementById('product-detail').innerHTML = "<p>Product not found.</p>";
+        }
+
+        
+
+const searchContainer = document.querySelector('.search-container');
+const searchForm = searchContainer.querySelector('form');
+const searchInput = searchContainer.querySelector('input[name="search"]');
+
+
+const suggestionsContainer = document.createElement('div');
+suggestionsContainer.classList.add('search-suggestions');
+suggestionsContainer.style.cssText = `
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 20px ;
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+searchContainer.style.position = 'relative';
+searchContainer.appendChild(suggestionsContainer);
+
+
+function handleSearch(event) {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    
+    
+    if (!searchTerm) {
+        suggestionsContainer.style.display = 'none';
+        return;
+    }
+    
+    
+    const matchingProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm)
+    );
+    
+    
+    if (matchingProducts.length > 0) {
+        suggestionsContainer.innerHTML = matchingProducts
+            .map(product => `
+                <div class="suggestion-item" data-product-id="${product.id}">
+                    <div class="suggestion-content">
+                        <img src="${product.image}" alt="${product.name}" style="width: 40px; height: 40px; object-fit: cover;">
+                        <div class="suggestion-details">
+                            <div>${product.name}</div>
+                            <div style="color: #666;">Rp. ${product.price.toLocaleString('id-ID')}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+        // Add styles to suggestion items
+        const suggestionItems = suggestionsContainer.querySelectorAll('.suggestion-item');
+        suggestionItems.forEach(item => {
+            item.style.cssText = `
+                padding: 10px;
+                cursor: pointer;
+                border-bottom: 1px solid #eee;
+            `;
+            item.querySelector('.suggestion-content').style.cssText = `
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            item.querySelector('.suggestion-details').style.cssText = `
+                display: flex;
+                flex-direction: column;
+            `;
+            
+            
+            item.addEventListener('mouseenter', () => {
+                item.style.backgroundColor = '#f5f5f5';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.backgroundColor = 'white';
+            });
+        });
+        
+        suggestionsContainer.style.display = 'block';
+    } else {
+        suggestionsContainer.innerHTML = `
+            <div style="padding: 10px; color: #666;">
+                No products found
+            </div>
+        `;
+        suggestionsContainer.style.display = 'block';
+    }
+}
+
+
+suggestionsContainer.addEventListener('click', (event) => {
+    const suggestionItem = event.target.closest('.suggestion-item');
+    if (suggestionItem) {
+        const productId = suggestionItem.dataset.productId;
+        window.location.href = `detail-product.html?id=${productId}`;
+    }
+});
+
+
+searchForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    if (searchTerm) {
+        const firstMatch = products.find(product => 
+            product.name.toLowerCase().includes(searchTerm)
+        );
+        if (firstMatch) {
+            window.location.href = `detail-product.html?id=${firstMatch.id}`;
+        }
+    }
+});
+
+
+searchInput.addEventListener('input', handleSearch);
+
+
+document.addEventListener('click', (event) => {
+    if (!searchContainer.contains(event.target)) {
+        suggestionsContainer.style.display = 'none';
+    }
+});
+
+
+searchInput.addEventListener('keydown', (event) => {
+    const suggestions = suggestionsContainer.querySelectorAll('.suggestion-item');
+    let currentIndex = Array.from(suggestions).findIndex(item => 
+        item.style.backgroundColor === '#f5f5f5'
+    );
+    
+    switch (event.key) {
+        case 'ArrowDown':
+            event.preventDefault();
+            if (currentIndex < suggestions.length - 1) {
+                if (currentIndex >= 0) {
+                    suggestions[currentIndex].style.backgroundColor = 'white';
+                }
+                suggestions[currentIndex + 1].style.backgroundColor = '#f5f5f5';
+                suggestions[currentIndex + 1].scrollIntoView({ block: 'nearest' });
+            }
+            break;
+            
+        case 'ArrowUp':
+            event.preventDefault();
+            if (currentIndex > 0) {
+                suggestions[currentIndex].style.backgroundColor = 'white';
+                suggestions[currentIndex - 1].style.backgroundColor = '#f5f5f5';
+                suggestions[currentIndex - 1].scrollIntoView({ block: 'nearest' });
+            }
+            break;
+            
+        case 'Enter':
+            if (currentIndex >= 0) {
+                event.preventDefault();
+                const productId = suggestions[currentIndex].dataset.productId;
+                window.location.href = `detail-product.html?id=${productId}`;
+            }
+            break;
+            
+        case 'Escape':
+            suggestionsContainer.style.display = 'none';
+            searchInput.blur();
+            break;
+    }
+});
+    </script>
+
+</body>
+
+</html>
